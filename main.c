@@ -1,5 +1,6 @@
 #include "pca9685.h"
 #include <errno.h>
+#include <signal.h>
 #include <softPwm.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +26,7 @@ int BIN2 = 5;
 int BIN1 = 6;
 /*******************舵机定义*************************
 *****************************************************/
-int ultrasonic_servo = 0; // 舵机定义 超声波摇头
+int ultrasonic_servo = 12; // 舵机定义 超声波摇头
 void forward(unsigned int speed, unsigned int t_time) {
   digitalWrite(AIN2, 0);
   digitalWrite(AIN1, 1);
@@ -129,6 +130,7 @@ int main(int argc, char *argv[]) {
   float dis1, dis2, dis3;
   // char buf[BUFSIZE] = {0xff, 0x00, 0x00, 0x00, 0xff};
   // int time = 1;
+  signal(SIGINT, stop);
   /*RPI*/
   wiringPiSetup();
   /*WiringPi GPIO*/
