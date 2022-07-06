@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
+#include <sys/times.h>
 #include <time.h>
 #include <unistd.h>
 #include <wiringPi.h>
@@ -132,13 +132,13 @@ int main(int argc, char *argv[]) {
   /*RPI*/
   wiringPiSetup();
   /*WiringPi GPIO*/
-  pinMode(1, OUTPUT);      //
-  PWMA pinMode(2, OUTPUT); // AIN2
-  pinMode(3, OUTPUT);      // AIN1
-  pinMode(4, OUTPUT);      // PWMB
-  pinMode(5, OUTPUT);      // BIN2
-  pinMode(6, OUTPUT);      // BIN1
-  ultraInit();             // 超声波初始化
+  pinMode(1, OUTPUT); // PWMA
+  pinMode(2, OUTPUT); // AIN2
+  pinMode(3, OUTPUT); // AIN1
+  pinMode(4, OUTPUT); // PWMB
+  pinMode(5, OUTPUT); // BIN2
+  pinMode(6, OUTPUT); // BIN1
+  ultraInit();        // 超声波初始化
   /*PWM output*/
   softPwmCreate(PWMA, 0, 100);
   softPwmCreate(PWMB, 0, 100);
