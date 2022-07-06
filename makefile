@@ -1,4 +1,4 @@
-SRC += csb.c pca9685.c
+SRC += main.c pca9685.c
 # pca9685.c
 OBJ = ${SRC:.c=.o}
 CFLAGS += --std=c99 -o2 -g -Wall
