@@ -72,6 +72,11 @@ void turn_right(unsigned int speed, unsigned int t_time) {
   softPwmWrite(PWMB, speed);
   delay(t_time);
 }
+
+void reset_status(int signal) {
+  stop(0);
+  exit(0);
+}
 void ultraInit(void) {
   pinMode(Echo, INPUT);
   pinMode(Trig, OUTPUT);
@@ -130,7 +135,6 @@ int main(int argc, char *argv[]) {
   float dis1, dis2, dis3;
   // char buf[BUFSIZE] = {0xff, 0x00, 0x00, 0x00, 0xff};
   // int time = 1;
-  signal(SIGINT, stop);
   /*RPI*/
   wiringPiSetup();
   /*WiringPi GPIO*/
@@ -153,6 +157,7 @@ int main(int argc, char *argv[]) {
   // Reset all output
   pca9685PWMReset(fd);
   printf("ok");
+  signal(SIGINT, reset_status);
   while (1) {
     dis1 = front_detection();
     if (dis1 < 40) {
